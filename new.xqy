@@ -44,7 +44,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
                  let $salt   := fn:substring(xdmp:md5(fn:string(fn:current-dateTime())), 1, 4)
                  let $title  := xdmp:url-encode(xdmp:get-request-field('/article/title'))
                  let $dir    := fn:replace(fn:tokenize(xs:string(fn:current-dateTime()), "T")[1], "-", "/")
-                 let $path   := fn:concat("/", $dir, "/", $title, "-", $salt ,".xml")
+                 let $path   := fn:concat("/", $dir, "/", $title[1], "-", $salt ,".xml")
                  let $xpaths := xdmp:get-request-field-names()
                    let $values := for $field in $xpaths
                      return xdmp:get-request-field($field)

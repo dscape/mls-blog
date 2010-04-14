@@ -1,5 +1,7 @@
 xquery version "1.0-ml" ;
 
+import module namespace h = "helpers" at "/lib/helpers.xqy" ;
+
 xdmp:set-response-content-type( "application/xhtml+xml" ),
 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
@@ -12,7 +14,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
 <body id="home">
   <div id="wrapper">
     <div id="header">
-      <h1> MarkLogic Blog </h1>
+      <h1> <img border="0" alt="MarkLogic" src="img/marklogic.png"/> Blog </h1>
     </div>
     <div id="nav">
       <ul>
@@ -22,7 +24,6 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
     <div id="content">
       <div id="subcol">
         <h2>Facets</h2>
-        Not yet
       </div>
      
       <div id="maincol">
@@ -33,11 +34,13 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
           </form>
         </div><br/> { 
           let $uri := xdmp:get-request-field("uri")
-          let $a := doc($uri)
+          let $a := doc(xdmp:url-encode($uri))
+let $_ := xdmp:log(xdmp:quote($a))
+let $_ := xdmp:log($uri)
             return 
             (<h2>{fn:string($a//*:title)}</h2>,
             <p>{fn:string($a//*:body)}</p>) }
-        <p>[ <a href="new.xqy">Add new</a> ]</p>
+        <p>[ { h:link_to_index() } ]</p>
       </div>
     </div>
   </div>

@@ -1,5 +1,7 @@
 xquery version "1.0-ml" ;
 
+import module namespace h = "helpers" at "/lib/helpers.xqy" ;
+
 xdmp:set-response-content-type( "application/xhtml+xml" ),
 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
@@ -12,7 +14,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
 <body id="home">
   <div id="wrapper">
     <div id="header">
-      <h1> MarkLogic Blog </h1>
+       <h1> <img border="0" alt="MarkLogic" src="img/marklogic.png"/> Blog </h1>
     </div>
     <div id="nav">
       <ul>
@@ -22,7 +24,6 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
     <div id="content">
       <div id="subcol">
         <h2>Facets</h2>
-        Not yet
       </div>
      
       <div id="maincol">
@@ -34,7 +35,6 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
         </div><br/>
         <h2>Listing Posts</h2>
         <dl> { for $a in fn:doc() [1 to 10]
-let $_ := xdmp:log ( xdmp:quote($a) )
           let $permalink := fn:concat('show.xqy?uri=', fn:document-uri($a))
           let $snippet   := fn:string-join(
             fn:tokenize(fn:string($a//*:body), " ")[1 to 20], " ")
@@ -42,7 +42,7 @@ let $_ := xdmp:log ( xdmp:quote($a) )
             (<dt><a href="{$permalink}">{fn:string($a//*:title)}</a></dt>,
             <dd>{$snippet}</dd>) }
         </dl>
-        <p>[ <a href="new.xqy">Add new</a> ]</p>
+        <p>[ {h:link_to_new()} ]</p>
       </div>
     </div>
   </div>

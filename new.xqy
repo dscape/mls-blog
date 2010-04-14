@@ -38,7 +38,9 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
             <textarea name="/article/body" id="body" cols="50"/><br/>
             <input type="submit" id="submit" value="Publish"/>
           </form>
-            else <p>New Post created</p>,
+            else 
+              let $title  := xdmp:url-encode(xdmp:get-request-field('/article/title'))
+              return if ( $title ) then
                  let $salt   := fn:substring(xdmp:md5(fn:string(fn:current-dateTime())), 1, 4)
                  let $title  := xdmp:url-encode(xdmp:get-request-field('/article/title'))
                  let $dir    := fn:replace(fn:tokenize(xs:string(fn:current-dateTime()), "T")[1], "-", "/")
@@ -46,8 +48,10 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
                  let $xpaths := xdmp:get-request-field-names()
                    let $values := for $field in $xpaths
                      return xdmp:get-request-field($field)
-                   return xdmp:document-insert( $path,
-                     gen:process-fields( $xpaths, $values ) ) }
+                   return (xdmp:document-insert( $path,
+                     gen:process-fields( $xpaths, $values ) ),
+                     <p>New Post created</p>)
+                     else <p>No title was supplied</p> }
         </div>
         <p>[ { h:link_to_index() } ]</p>
       </div>

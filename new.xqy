@@ -20,7 +20,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
     </div>
     <div id="nav">
       <ul>
-        <li><a href="index.xqy">Home</a></li>
+        <li><a href="/">Home</a></li>
       </ul>
     </div>
     <div id="content">

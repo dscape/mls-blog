@@ -35,7 +35,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
         </div><br/>
         <h2>Listing Posts</h2>
         <dl> { for $a in fn:doc() [1 to 10]
-          let $permalink := fn:concat('show.xqy?uri=', fn:document-uri($a))
+          let $permalink := h:link_to_show( fn:document-uri($a) )
           let $snippet   := fn:string-join(
             fn:tokenize(fn:string($a//*:body), " ")[1 to 20], " ")
           return 

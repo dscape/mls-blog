@@ -7,3 +7,6 @@ declare function h:link_to_index() {
 
 declare function h:link_to_new() {
   <a href="new.xqy" xmlns="http://www.w3.org/1999/xhtml">Add new</a> } ;
+
+declare function h:link_to_show( $path ) {
+  fn:concat( 'show.xqy?uri=', $path ) }; 

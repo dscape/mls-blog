@@ -16,7 +16,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
 <body id="home">
   <div id="wrapper">
     <div id="header">
-       <h1> <img border="0" alt="MarkLogic" src="img/marklogic.png"/> Blog </h1>
+       <h1> <img border="0" alt="MarkLogic" src="/img/marklogic.png"/> Blog </h1>
     </div>
     <div id="nav">
       <ul>

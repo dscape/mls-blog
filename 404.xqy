@@ -14,7 +14,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
 <body id="home">
   <div id="wrapper">
     <div id="header">
-      <h1> <img border="0" alt="MarkLogic" src="/img/marklogic.png"/> Blog </h1>
+       <h1> <img border="0" alt="MarkLogic" src="/img/marklogic.png"/> Blog </h1>
     </div>
     <div id="nav">
       <ul>
@@ -32,15 +32,9 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
             <input type="text" name="q" id="q" size="50"/>
             <input type="submit" id="submitbtn" value="search"/>
           </form>
-        </div><br/> { 
-          let $uri := xdmp:get-request-field("uri")
-          let $a := doc(xdmp:url-encode($uri))
-let $_ := xdmp:log(xdmp:quote($a))
-let $_ := xdmp:log($uri)
-            return 
-            (<h2>{fn:string($a//*:title)}</h2>,
-            <p>{fn:string($a//*:body)}</p>) }
-        <p>[ { h:link_to_index() } ]</p>
+        </div><br/>
+        <h2>Page not found</h2>
+        <p>[ {h:link_to_index()} ]</p>
       </div>
     </div>
   </div>

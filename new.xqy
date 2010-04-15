@@ -11,7 +11,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title> MarkLogic Blog </title>
-  <link href="css/screen.css" media="screen" rel="stylesheet" type="text/css"/>
+  <link href="/css/screen.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body id="home">
   <div id="wrapper">

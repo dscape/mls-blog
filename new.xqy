@@ -47,7 +47,15 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
                  let $path   := fn:concat("/", $dir, "/", $title[1], "-", $salt ,".xml")
                  let $xpaths := xdmp:get-request-field-names()
                    let $values := for $field in $xpaths
-                     return xdmp:get-request-field($field)
+                     return xdmp:get-request-field($field)[1]
+
+let $_ := xdmp:log($salt)
+let $_ := xdmp:log($title)
+let $_ := xdmp:log($dir)
+let $_ := xdmp:log($path)
+let $_ := xdmp:log(fn:string-join($xpaths, ", "))
+let $_ := xdmp:log(fn:string-join($values, ", "))
+
                    return (xdmp:document-insert( $path,
                      gen:process-fields( $xpaths, $values ) ),
                      <p>New Post created</p>)

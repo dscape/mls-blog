@@ -10,3 +10,5 @@ declare function h:link_to_new() {
 
 declare function h:link_to_show( $path ) {
   fn:concat( '/show.xqy?uri=', $path ) };
+
+declare function h:article-submission-action() { "/new.xqy" } ;

@@ -33,7 +33,7 @@ xdmp:set-response-content-type( "application/xhtml+xml" ),
         <div id="new-article">
           { if (fn:empty(xdmp:get-request-field-names()))
             then <form name="form-new-article" method="post" 
-            action="new.xqy" id="form-new-article"> 
+            action="{h:article-submission-action()}" id="form-new-article"> 
             <input type="text" name="/article/title" id="title" size="50"/>
             <textarea name="/article/body" id="body" cols="50"/><br/>
             <input type="submit" id="submit" value="Publish"/>
